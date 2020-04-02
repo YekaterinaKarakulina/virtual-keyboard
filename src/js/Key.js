@@ -16,9 +16,22 @@ export class Key {
         return key;
     }
 
-    pressKey(key) {
+  lightKey(keyName) {
+     console.log('light');
+        document.querySelectorAll('.keyboard__key').forEach(element => {
+            if(element.innerHTML === 't') {
+                console.log('da' + element);
+            element.classList.add('aaa');
+            }
+            
+        });
+    }
+
+    printKey() {
 
     }
+
+
 
 
 }
