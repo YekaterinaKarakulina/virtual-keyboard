@@ -4,7 +4,7 @@
   "description": "Virtual keyboard task",
   "main": "index.js",
   "scripts": {
-    "style": "sass --watch sass/style.scss sass/style.css",
+    "style": "sass --watch src/sass/style.scss src/sass/style.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/YekaterinaKarakulina/virtual-keyboard/issues"
   },
-  "homepage": "https://github.com/YekaterinaKarakulina/virtual-keyboard#readme"
+  "homepage": "https://github.com/YekaterinaKarakulina/virtual-keyboard#readme",
+  "dependencies": {
+    "webpack": "^4.42.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.11"
+  }
 }
