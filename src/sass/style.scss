@@ -12,24 +12,29 @@
     min-height: 255px;
     position: fixed;
     bottom: 0;
-    background-color: blue;
 }
 
 .keyboard__keys {
     text-align: center;
-    width: 55vw;
     margin: 0 auto;
 }
 
 .keyboard__key {
     height: 45px;
     width: 6%;
-    max-width: 90px;
+    max-width: 45px;
     margin: 3px;
     border-radius: 4px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     vertical-align: top;
-
+    &.keyboard__key_extra-wide {
+        width: 26%; 
+        max-width: 500px;
+    }
+    &.keyboard__key_wide {
+        width: 12%;
+        max-width: 90px;
+    }
 }
