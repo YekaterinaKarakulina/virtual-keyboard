@@ -6,7 +6,7 @@ const keyboard_eng = [
     ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'Delete'],
     ['CapsLk', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\\', 'Enter'],
     ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'Shift', 'Up'],
-    ['Ctrl', 'Alt', 'Space', 'Alt', 'Ctrl', 'Left', 'Down', 'Right']
+    ['Ctrl', 'Win', 'Alt', 'Space', 'Alt', 'Ctrl', 'Left', 'Down', 'Right']
 ];
 
 // '\\',\
@@ -23,6 +23,18 @@ window.onload = function() {
 
     //create keys
     keyboard.generateKeys(keyboard_eng);
-    
-    
+
+    //monitor keyboard events
+    keyboardHandler();
 }
+
+const  keyboardHandler = () => {
+    let textarea_content = '';
+    document.addEventListener('keydown', (event) => {
+        textarea_content = textarea_content + event.key;
+        document.querySelector('.keyboard-textarea').innerHTML = textarea_content;
+    });
+             
+}
+        
+       
