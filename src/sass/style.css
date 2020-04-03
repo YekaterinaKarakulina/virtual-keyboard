@@ -29,6 +29,9 @@
   align-items: center;
   justify-content: center;
   vertical-align: top;
+  position: relative;
+  background-color: #2d303a;
+  color: #ffffff;
 }
 .keyboard__key.keyboard__key_extra-wide {
   width: 26%;
@@ -38,9 +41,19 @@
   width: 12%;
   max-width: 90px;
 }
+.keyboard__key.keyboard__key_activatable::after {
+  content: "";
+  top: 5px;
+  right: 5px;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
 
 .aaa {
-  background-color: blue;
+  background: red;
 }
 
 /*# sourceMappingURL=style.css.map */

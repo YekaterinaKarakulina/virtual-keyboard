@@ -13,21 +13,40 @@ export class Key {
         if(keyName === 'Tab' || keyName === 'Ctrl' || keyName === 'Shift' || keyName === 'Enter' || keyName === 'Backspace') {
             key.classList.add('keyboard__key_wide');
         }
+        if(keyName === 'CapsLock') {
+            key.classList.add('keyboard__key_activatable');
+            key.classList.add('keyboard__key_wide');
+        }
         return key;
     }
 
-  lightKey(keyName) {
-     console.log('light');
-        document.querySelectorAll('.keyboard__key').forEach(element => {
-            if(element.innerHTML === 't') {
-                console.log('da' + element);
-            element.classList.add('aaa');
+    lightKey(keyName) {
+        document.querySelectorAll('.keyboard__key').forEach(element => {        
+            if(element.innerHTML === keyName) {
+                element.classList.add('aaa');
             }
-            
         });
     }
 
-    printKey() {
+
+    returnKeyValueToPrint(keyName) {
+        let key_content = '';
+        key_content = keyName;
+         
+        if(keyName.length === 1) {
+            key_content = keyName;
+        } else {
+            switch (keyName) {
+            case 'Enter':
+                key_content = '\n';
+                break;
+            case 'Tab': 
+                key_content = '    ';
+                break;
+            }
+        }
+        return key_content;
+      
 
     }
 
