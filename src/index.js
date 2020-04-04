@@ -5,9 +5,9 @@ import { Key } from './js/Key';
 const keyboard_eng = [
     ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'],
     ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'Delete'],
-    ['CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '"', 'Enter'],
-    ['Shift','\\', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'Shift', 'Up'],
-    ['Ctrl', 'Win', 'Alt', 'Space', 'Alt', 'Ctrl', 'Left', 'Down', 'Right']
+    ['CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'Enter'],
+    ['ShiftLeft','\\', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'ShiftRight', 'ArrowUp'],
+    ['ControlLeft', 'Win', 'AltLeft', 'Space', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight']
 ];
 
 window.onload = function() {
@@ -38,14 +38,14 @@ let isCapsLockOn = false;
 function keyboardHandler(keyboard){
     let textarea_content = '';
     let key_content = '';
-    console.log('!!!!');
 
     document.addEventListener('keydown', (event) => {
         let keyName = event.key;
-        console.log('event key' + event.key);
+        let keyCode = event.code;
+        console.log(event);
         
         let key = new Key(event.key);
-        key.pressedKeyHandler(keyName);
+        key.pressedKeyHandler(keyName, keyCode);
 
         if(keyName.length === 1) {
             
@@ -53,17 +53,29 @@ function keyboardHandler(keyboard){
      
         } else {
             switch (keyName) {
-            case 'Enter':
-                key_content = '\n';
+            case 'Backspace': //TODO
+                key_content = '';
                 break;
             case 'Tab': 
                 key_content = '    ';
+                break;
+            case 'Delete': 
+                key_content = ''; //TODO
                 break;
             case 'CapsLock':
                 isCapsLockOn = !isCapsLockOn;
                 key_content = '';
                 activateCapsLock(keyboard);
                 break;
+            case 'Enter':
+                key_content = '\n';
+                break;
+            case 'Shift':
+                key_content = '';
+                break;
+
+
+
             case 'ArrowLeft':
                 key_content = '←';
                 break;
@@ -88,8 +100,9 @@ function keyboardHandler(keyboard){
 
     document.addEventListener('keyup', (event) => {
         let keyName = event.key;
+        let keyCode = event.code;
         let key = new Key(event.key);
-        key.unpressedKeyHandler(keyName);
+        key.unpressedKeyHandler(keyName, keyCode);
     });
 }
 
