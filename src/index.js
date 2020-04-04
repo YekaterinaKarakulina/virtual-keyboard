@@ -23,33 +23,27 @@ window.onload = function() {
 
     //create keys
     //keyboard.generateKeys(keyboard_eng);
-    keyboard.renderKeys(keyboard_eng);
-    keyboard.renderBRs();
+    keyboard.renderKeys(keyboard_eng, false);
+    
 
     //monitor keyboard events
-  //  keyboardHandler();
+    keyboardHandler(keyboard);
 
 
 }
 
 
 
+let isCapsLockOn = false;
 
 
-
-
-/*
-const  keyboardHandler = () => {
+function keyboardHandler(keyboard){
     let textarea_content = '';
     let key_content = '';
 
-    let isCapsLockOn = false;
-
     document.addEventListener('keydown', (event) => {
-        let key = new Key();
         let keyName = event.key;
-        key.lightKey(keyName);
-
+        //key.lightKey(keyName);
 
         if(keyName.length === 1) {
             key_content = keyName;
@@ -61,18 +55,17 @@ const  keyboardHandler = () => {
             case 'Tab': 
                 key_content = '    ';
                 break;
-            
             case 'CapsLock':
                 isCapsLockOn = !isCapsLockOn;
-                console.log(isCapsLockOn);
-
-
+                key_content = '';
+                document.querySelector('.keyboard__keys').innerHTML = '';
+                keyboard.renderKeys(keyboard_eng, isCapsLockOn);
             }
         }
         textarea_content = textarea_content + key_content;
         document.querySelector('.keyboard-textarea').innerHTML = textarea_content;
         event.preventDefault();
     });        
-}*/
+}
         
        

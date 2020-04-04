@@ -1,14 +1,29 @@
 export class Key {
 
-    constructor(keyName) {
+    constructor(keyName, isUpperCase) {
         this.keyName = keyName;
+        this.isUpperCase = isUpperCase;
     }
     
     //generate key
     generateKey() {
         let key = document.createElement('button');
         key.classList.add('keyboard__key');
-        key.innerHTML = this.keyName;
+        if(this.keyName.length < 2) {
+                if(this.isUpperCase === true)
+            {
+                console.log('upper');
+                key.innerHTML = this.keyName.toUpperCase();
+            } else {
+                console.log('lower');
+                key.innerHTML = this.keyName.toLowerCase();
+            }
+        } else {
+            key.innerHTML = this.keyName
+        }
+       
+
+       // key.innerHTML = this.keyName;
 
         if(this.keyName === 'Space') {
             key.classList.add('keyboard__key_extra-wide');
@@ -20,34 +35,11 @@ export class Key {
             key.classList.add('keyboard__key_activatable');
             key.classList.add('keyboard__key_wide');
         }
-
         return key;
     }
-    
-    
-    
-/*    constructor() { }
-   
-    generateKey(keyName) {
-        let key = document.createElement('button');
-        key.classList.add('keyboard__key');
-        key.innerHTML = keyName;
 
-        if(keyName === 'Space') {
-            key.classList.add('keyboard__key_extra-wide');
-        }
-        if(keyName === 'Tab' || keyName === 'Ctrl' || keyName === 'Shift' || keyName === 'Enter' || keyName === 'Backspace') {
-            key.classList.add('keyboard__key_wide');
-        }
-        if(keyName === 'CapsLock') {
-            key.classList.add('keyboard__key_activatable');
-            key.classList.add('keyboard__key_wide');
-        }
-        return key;
-    }
-*/
-   
-   
+    
+    
    /* lightKey(keyName) {
         document.querySelectorAll('.keyboard__key').forEach(element => {        
             if(element.innerHTML === keyName) {

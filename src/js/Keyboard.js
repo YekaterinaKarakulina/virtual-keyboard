@@ -17,9 +17,9 @@ export class Keyboard {
     }
 
     //render keys
-    renderKeys(keysArray) {
+    renderKeys(keysArray, isUppercase) {
         let keys_container = document.querySelector('.keyboard__keys');
-        this.generateKeys(keysArray).forEach(key => {
+        this.generateKeys(keysArray, isUppercase).forEach(key => {
             keys_container.append(key.generateKey());
             if(key.keyName === 'Backspace' || key.keyName === 'Delete' || key.keyName === 'Enter' || key.keyName === 'Up') {
                 keys_container.append(document.createElement('br'));
@@ -28,11 +28,11 @@ export class Keyboard {
     }
 
     //generate keys
-    generateKeys(keysArray){
+    generateKeys(keysArray, isUppercase){
         let keys = [];
         for(let i=0; i<keysArray.length; i++) {
             for(let j=0; j<keysArray[i].length; j++) {
-                keys.push(new Key(keysArray[i][j]));
+                keys.push(new Key(keysArray[i][j], isUppercase));
             }
         }
         return keys;
