@@ -6,7 +6,7 @@ export class Keyboard {
         this.name = name;
     }
 
-    //generate container foe keyboard
+    //generate container for keyboard
     generateKeyboardContainer() {
         let keyboardContainer = document.createElement('div');
         keyboardContainer.classList.add('keyboard');
@@ -16,16 +16,29 @@ export class Keyboard {
         document.body.append(keyboardContainer);
     }
 
-    //generate all keys from array with key`s names
-    generateKeys(keysArray) {
+    //render keys
+    renderKeys(keysArray) {
+        let keys_container = document.querySelector('.keyboard__keys');
+        this.generateKeys(keysArray).forEach(key => {
+            keys_container.append(key.generateKey());
+            if(key.keyName === 'Backspace' || key.keyName === 'Delete' || key.keyName === 'Enter' || key.keyName === 'Up') {
+                keys_container.append(document.createElement('br'));
+            }
+        });
+    }
+
+    //generate keys
+    generateKeys(keysArray){
+        let keys = [];
         for(let i=0; i<keysArray.length; i++) {
             for(let j=0; j<keysArray[i].length; j++) {
-                let key = new Key();
-                document.querySelector('.keyboard__keys').append(key.generateKey(keysArray[i][j]));
+                keys.push(new Key(keysArray[i][j]));
             }
-            document.querySelector('.keyboard__keys').append(document.createElement('br')); 
         }
+        return keys;
     }
+
+  
 
                  
     

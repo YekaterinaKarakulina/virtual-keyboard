@@ -1,7 +1,33 @@
 export class Key {
 
-    constructor() { }
+    constructor(keyName) {
+        this.keyName = keyName;
+    }
+    
+    //generate key
+    generateKey() {
+        let key = document.createElement('button');
+        key.classList.add('keyboard__key');
+        key.innerHTML = this.keyName;
 
+        if(this.keyName === 'Space') {
+            key.classList.add('keyboard__key_extra-wide');
+        }
+        if(this.keyName === 'Tab' || this.keyName === 'Ctrl' || this.keyName === 'Shift' || this.keyName === 'Enter' || this.keyName === 'Backspace') {
+            key.classList.add('keyboard__key_wide');
+        }
+        if(this.keyName === 'CapsLock') {
+            key.classList.add('keyboard__key_activatable');
+            key.classList.add('keyboard__key_wide');
+        }
+
+        return key;
+    }
+    
+    
+    
+/*    constructor() { }
+   
     generateKey(keyName) {
         let key = document.createElement('button');
         key.classList.add('keyboard__key');
@@ -19,38 +45,16 @@ export class Key {
         }
         return key;
     }
-
-    lightKey(keyName) {
+*/
+   
+   
+   /* lightKey(keyName) {
         document.querySelectorAll('.keyboard__key').forEach(element => {        
             if(element.innerHTML === keyName) {
                 element.classList.add('aaa');
             }
         });
-    }
-
-
-    returnKeyValueToPrint(keyName) {
-        let key_content = '';
-        key_content = keyName;
-         
-        if(keyName.length === 1) {
-            key_content = keyName;
-        } else {
-            switch (keyName) {
-            case 'Enter':
-                key_content = '\n';
-                break;
-            case 'Tab': 
-                key_content = '    ';
-                break;
-            }
-        }
-        return key_content;
-      
-
-    }
-
-
+    }*/
 
 
 }

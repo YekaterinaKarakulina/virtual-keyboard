@@ -47,15 +47,31 @@
             position: absolute;
             width: 8px;
             height: 8px;
-            background: rgba(0, 0, 0, 0.5);
+            //background: rgba(0, 0, 0, 0.5);
+            background: red;
             border-radius: 50%;
     }
+            &.active::after {
+                content: '';
+                top: 5px;
+                right: 5px;
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                
+                border-radius: 50%;
+                background: #08ff00;
+            }
+    
 }
 
 .aaa {
     background: red;
   
 }
+
+
+
 
 
 
