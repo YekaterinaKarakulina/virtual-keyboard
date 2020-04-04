@@ -42,8 +42,10 @@ function keyboardHandler(keyboard){
     let key_content = '';
 
     document.addEventListener('keydown', (event) => {
+        
         let keyName = event.key;
-        //key.lightKey(keyName);
+        let key = new Key(event.key);
+        key.lightKey(keyName);
 
         if(keyName.length === 1) {
             key_content = keyName;
@@ -57,9 +59,17 @@ function keyboardHandler(keyboard){
                 break;
             case 'CapsLock':
                 isCapsLockOn = !isCapsLockOn;
+                console.log('is cl' + isCapsLockOn);
+              //  ←, →, ↑, ↓.
+
                 key_content = '';
                 document.querySelector('.keyboard__keys').innerHTML = '';
                 keyboard.renderKeys(keyboard_eng, isCapsLockOn);
+                if(isCapsLockOn === true) {
+                    document.querySelector('.keyboard__key_activatable').classList.add('active');
+                } else {
+                    document.querySelector('.keyboard__key_activatable').classList.remove('active');
+                }
             }
         }
         textarea_content = textarea_content + key_content;

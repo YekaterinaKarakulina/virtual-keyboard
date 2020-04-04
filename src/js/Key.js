@@ -19,12 +19,8 @@ export class Key {
                 key.innerHTML = this.keyName.toLowerCase();
             }
         } else {
-            key.innerHTML = this.keyName
+            key.innerHTML = this.keyName;
         }
-       
-
-       // key.innerHTML = this.keyName;
-
         if(this.keyName === 'Space') {
             key.classList.add('keyboard__key_extra-wide');
         }
@@ -40,13 +36,13 @@ export class Key {
 
     
     
-   /* lightKey(keyName) {
+    lightKey(keyName) {
         document.querySelectorAll('.keyboard__key').forEach(element => {        
             if(element.innerHTML === keyName) {
-                element.classList.add('aaa');
+                element.classList.add('pressed');
             }
         });
-    }*/
+    }
 
 
 }
