@@ -3,7 +3,7 @@ import {Textarea} from './js/Textarea';
 import { Key } from './js/Key';
 
 const keyboard_eng = [
-    ['~', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'],
+    ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'],
     ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'Delete'],
     ['CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '"', 'Enter'],
     ['Shift','\\', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'Shift', 'Up'],
@@ -21,11 +21,9 @@ window.onload = function() {
     let keyboard = new Keyboard('eng-keyboard');
     keyboard.generateKeyboardContainer();
 
-    //create keys
-    //keyboard.generateKeys(keyboard_eng);
+    //create and render keys
     keyboard.renderKeys(keyboard_eng, false);
     
-
     //monitor keyboard events
     keyboardHandler(keyboard);
 
@@ -40,15 +38,19 @@ let isCapsLockOn = false;
 function keyboardHandler(keyboard){
     let textarea_content = '';
     let key_content = '';
+    console.log('!!!!');
 
     document.addEventListener('keydown', (event) => {
         let keyName = event.key;
+        console.log('event key' + event.key);
+        
         let key = new Key(event.key);
         key.pressedKeyHandler(keyName);
 
         if(keyName.length === 1) {
-            key_content = keyName;
             
+                    key_content = keyName;
+     
         } else {
             switch (keyName) {
             case 'Enter':
@@ -59,7 +61,6 @@ function keyboardHandler(keyboard){
                 break;
             case 'CapsLock':
                 isCapsLockOn = !isCapsLockOn;
-                console.log('is cl' + isCapsLockOn);
               //  ←, →, ↑, ↓.
 
                 key_content = '';
@@ -70,6 +71,20 @@ function keyboardHandler(keyboard){
                 } else {
                     document.querySelector('.keyboard__key_activatable').classList.remove('active');
                 }
+                break;
+            case 'ArrowLeft':
+                key_content = '←';
+                break;
+            case 'ArrowRight':
+                key_content = '→';
+                break;
+            case 'ArrowUp':
+                key_content = '↑';
+                break;
+            case 'ArrowDown':
+                key_content = '↓';
+                break;
+
             }
         }
         textarea_content = textarea_content + key_content;
