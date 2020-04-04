@@ -42,13 +42,13 @@ function keyboardHandler(keyboard){
     let key_content = '';
 
     document.addEventListener('keydown', (event) => {
-        
         let keyName = event.key;
         let key = new Key(event.key);
-        key.lightKey(keyName);
+        key.pressedKeyHandler(keyName);
 
         if(keyName.length === 1) {
             key_content = keyName;
+            
         } else {
             switch (keyName) {
             case 'Enter':
@@ -75,7 +75,15 @@ function keyboardHandler(keyboard){
         textarea_content = textarea_content + key_content;
         document.querySelector('.keyboard-textarea').innerHTML = textarea_content;
         event.preventDefault();
-    });        
+    });  
+    
+    
+
+    document.addEventListener('keyup', (event) => {
+        let keyName = event.key;
+        let key = new Key(event.key);
+        key.unpressedKeyHandler(keyName);
+    });
 }
         
        

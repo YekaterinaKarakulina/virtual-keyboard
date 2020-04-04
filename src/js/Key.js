@@ -36,10 +36,18 @@ export class Key {
 
     
     
-    lightKey(keyName) {
+    pressedKeyHandler(keyName) {
         document.querySelectorAll('.keyboard__key').forEach(element => {        
             if(element.innerHTML === keyName) {
                 element.classList.add('pressed');
+            }
+        });
+    }
+
+    unpressedKeyHandler(keyName) {
+        document.querySelectorAll('.keyboard__key').forEach(element => {        
+            if(element.innerHTML === keyName) {
+                element.classList.remove('pressed');
             }
         });
     }
