@@ -61,16 +61,8 @@ function keyboardHandler(keyboard){
                 break;
             case 'CapsLock':
                 isCapsLockOn = !isCapsLockOn;
-              //  ←, →, ↑, ↓.
-
                 key_content = '';
-                document.querySelector('.keyboard__keys').innerHTML = '';
-                keyboard.renderKeys(keyboard_eng, isCapsLockOn);
-                if(isCapsLockOn === true) {
-                    document.querySelector('.keyboard__key_activatable').classList.add('active');
-                } else {
-                    document.querySelector('.keyboard__key_activatable').classList.remove('active');
-                }
+                activateCapsLock(keyboard);
                 break;
             case 'ArrowLeft':
                 key_content = '←';
@@ -100,5 +92,14 @@ function keyboardHandler(keyboard){
         key.unpressedKeyHandler(keyName);
     });
 }
-        
+
+function activateCapsLock(keyboard) {
+    document.querySelector('.keyboard__keys').innerHTML = '';
+    keyboard.renderKeys(keyboard_eng, isCapsLockOn);
+    if(isCapsLockOn === true) {
+        document.querySelector('.keyboard__key_activatable').classList.add('active');
+    } else {
+        document.querySelector('.keyboard__key_activatable').classList.remove('active');
+    }
+}
        
