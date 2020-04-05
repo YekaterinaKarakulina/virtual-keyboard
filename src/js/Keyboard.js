@@ -1,5 +1,20 @@
 import {Key} from "./Key";
 
+const keyboard_eng = [
+    ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'],
+    ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'Delete'],
+    ['CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'Enter'],
+    ['ShiftLeft','\\', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'ShiftRight', 'ArrowUp'],
+    ['ControlLeft', 'AltLeft', 'Space', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight']
+];
+
+const keyboard_ru = [
+    ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'],
+    ['Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'Delete'],
+    ['CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter'],
+    ['ShiftLeft','\\', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '/', 'ShiftRight', 'ArrowUp'],
+    ['ControlLeft', 'AltLeft', 'Space', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight']
+];
 export class Keyboard {
  
     constructor({name}) {
@@ -17,14 +32,28 @@ export class Keyboard {
     }
 
     //render keys
-    renderKeys(keysArray, isUppercase) {
+    renderKeys(keyboardLanguage, isUppercase) {
+        console.log('lang' + keyboardLanguage);
         let keys_container = document.querySelector('.keyboard__keys');
-        this.generateKeys(keysArray, isUppercase).forEach(key => {
-            keys_container.append(key.generateKey());
-            if(key.keyName === 'Backspace' || key.keyName === 'Delete' || key.keyName === 'Enter' || key.keyName === 'ArrowUp') {
-                keys_container.append(document.createElement('br'));
-            }
-        });
+        if(keyboardLanguage === 'eng') {
+            this.generateKeys(keyboard_eng, isUppercase).forEach(key => {
+                keys_container.append(key.generateKey());
+                if(key.keyName === 'Backspace' || key.keyName === 'Delete' || key.keyName === 'Enter' || key.keyName === 'ArrowUp') {
+                    keys_container.append(document.createElement('br'));
+                }
+            });
+        }
+
+        if(keyboardLanguage === 'ru') {
+            this.generateKeys(keyboard_ru, isUppercase).forEach(key => {
+                keys_container.append(key.generateKey());
+                if(key.keyName === 'Backspace' || key.keyName === 'Delete' || key.keyName === 'Enter' || key.keyName === 'ArrowUp') {
+                    keys_container.append(document.createElement('br'));
+                }
+            });
+        }
+        
+        
     }
 
     //generate keys
@@ -36,10 +65,5 @@ export class Keyboard {
             }
         }
         return keys;
-    }
-
-  
-
-                 
-    
+    }  
 }
