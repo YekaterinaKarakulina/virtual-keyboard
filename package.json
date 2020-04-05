@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "style": "sass --watch src/sass/style.scss src/sass/style.css",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "eslint ./src",
+    "eslint:fix": "eslint ./src --fix"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,10 @@
     "webpack": "^4.42.1"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
     "webpack-cli": "^3.3.11"
   }
 }
