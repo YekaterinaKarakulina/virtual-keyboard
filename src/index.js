@@ -16,7 +16,7 @@ window.onload = function() {
     
     //create and render keys
     //------------------------//
-    let keyboardLanguage = 'eng';
+    let keyboardLanguage = 'ru';
    
     keyboard.renderKeys(keyboardLanguage, false);
 
@@ -37,6 +37,7 @@ function keyboardHandler(keyboard, keyboardLanguage){
     let key_content = '';
 
     document.addEventListener('keydown', (event) => {
+        let keyElem = document.querySelector('.' + event.key.toLowerCase());
         let keyName = event.key;
         let keyCode = event.code;
         console.log(event);
@@ -44,7 +45,7 @@ function keyboardHandler(keyboard, keyboardLanguage){
         let key = new Key(event.key);
         key.pressedKeyHandler(keyName, keyCode);
         if(keyName.length === 1) {
-            key_content = keyName;
+            key_content = keyElem.innerHTML;
         } else {
             switch (keyName) {
                 case 'Backspace': 

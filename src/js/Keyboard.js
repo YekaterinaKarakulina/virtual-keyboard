@@ -36,7 +36,7 @@ export class Keyboard {
         console.log('lang' + keyboardLanguage);
         let keys_container = document.querySelector('.keyboard__keys');
         if(keyboardLanguage === 'eng') {
-            this.generateKeys(keyboard_eng, isUppercase).forEach(key => {
+            this.generateKeys(keyboard_eng, keyboard_eng, isUppercase).forEach(key => {
                 keys_container.append(key.generateKey());
                 if(key.keyName === 'Backspace' || key.keyName === 'Delete' || key.keyName === 'Enter' || key.keyName === 'ArrowUp') {
                     keys_container.append(document.createElement('br'));
@@ -45,7 +45,7 @@ export class Keyboard {
         }
 
         if(keyboardLanguage === 'ru') {
-            this.generateKeys(keyboard_ru, isUppercase).forEach(key => {
+            this.generateKeys(keyboard_eng ,keyboard_ru, isUppercase).forEach(key => {
                 keys_container.append(key.generateKey());
                 if(key.keyName === 'Backspace' || key.keyName === 'Delete' || key.keyName === 'Enter' || key.keyName === 'ArrowUp') {
                     keys_container.append(document.createElement('br'));
@@ -57,11 +57,11 @@ export class Keyboard {
     }
 
     //generate keys
-    generateKeys(keysArray, isUppercase){
+    generateKeys(keysClassArray,  keysTitleArray, isUppercase){
         let keys = [];
-        for(let i=0; i<keysArray.length; i++) {
-            for(let j=0; j<keysArray[i].length; j++) {
-                keys.push(new Key(keysArray[i][j], isUppercase));
+        for(let i=0; i<keysTitleArray.length; i++) {
+            for(let j=0; j<keysTitleArray[i].length; j++) {
+                keys.push(new Key(keysClassArray[i][j], keysTitleArray[i][j], isUppercase));
             }
         }
         return keys;

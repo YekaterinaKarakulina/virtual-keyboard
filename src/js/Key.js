@@ -1,15 +1,17 @@
 export class Key {
 
-    constructor(keyName, isUpperCase) {
+    constructor(keyClass, keyName, isUpperCase) {
         this.keyName = keyName;
+        this.keyClass = keyClass;
         this.isUpperCase = isUpperCase;
+
     }
     
     //generate key
     generateKey() {
         let key = document.createElement('button');
         key.classList.add('keyboard__key');
-        key.classList.add(this.keyName);
+        key.classList.add(this.keyClass);
         let keyName = '';
 
 
