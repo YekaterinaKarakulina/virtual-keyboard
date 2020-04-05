@@ -12,30 +12,24 @@ window.onload = function() {
     //create keyboard container
     let keyboard = new Keyboard('keyboard');
     keyboard.generateKeyboardContainer();
-
     
-    //create and render keys
-    //------------------------//
-    let keyboardLanguage = 'ru';
-   
-    keyboard.renderKeys(keyboardLanguage, false);
+    //create and render keys   
+    keyboard.renderKeys(true, false);   //isLanguageEng - true; isCapsLockOn - false
 
     //monitor keyboard events
-    keyboardHandler(keyboard, keyboardLanguage);
-
+    keyboardHandler();
 
 }
 
 
 
 let isCapsLockOn = false;
-let count = 0;
+let isLanguageEng = true;
 
-
-function keyboardHandler(keyboard, keyboardLanguage){
+function keyboardHandler( ){
     let textarea_content = '';
     let key_content = '';
-
+    
     document.addEventListener('keydown', (event) => {
         let keyElem = document.querySelector('.' + event.key.toLowerCase());
         let keyName = event.key;
@@ -61,18 +55,18 @@ function keyboardHandler(keyboard, keyboardLanguage){
                 case 'CapsLock':
                     isCapsLockOn = !isCapsLockOn;
                     key_content = '';
-                    activateCapsLock(keyboard, keyboardLanguage);
+                    activateCapsLock(isLanguageEng);
                     break;
                 case 'Enter':
                     key_content = '\n';
                     break;
                 case 'Shift':
                     key_content = '';
-                    checkLanguageSwitch(keyboard, keyboardLanguage);
+                    isLanguageEng = !isLanguageEng;
+                    checkLanguageSwitch(isLanguageEng);
                     break;
                 case 'Control':
                     key_content = '';
-                    checkLanguageSwitch(keyboard, keyboardLanguage);
                     break;
                 case 'Alt':
                     key_content = '';
@@ -91,6 +85,7 @@ function keyboardHandler(keyboard, keyboardLanguage){
                     break;
             }
         }
+        
         textarea_content = textarea_content + key_content;
         document.querySelector('.keyboard-textarea').innerHTML = textarea_content;
         event.preventDefault();
@@ -103,13 +98,15 @@ function keyboardHandler(keyboard, keyboardLanguage){
         let key = new Key(event.key);
         key.unpressedKeyHandler(keyName, keyCode);
     });
+
+    
 }
 
 
 
-function activateCapsLock(keyboard, keyboardLanguage) {
+function activateCapsLock(isLanguageEng) {
     clearKeyboardContainer();
-    keyboard.renderKeys(keyboardLanguage, isCapsLockOn);    //---todo toggle
+    keyboard.renderKeys(isLanguageEng, isCapsLockOn);    //---todo toggle
     if(isCapsLockOn === true) {
         document.querySelector('.keyboard__key_activatable').classList.add('active');
     } else {
@@ -117,30 +114,24 @@ function activateCapsLock(keyboard, keyboardLanguage) {
     }
 }
 
-
-function checkLanguageSwitch(keyboard, keyboardLanguage) {
+function checkLanguageSwitch(isLanguageEng) {
     let startTime = new Date().getTime();
     let allowedTime = 300;
-    
+   
     document.addEventListener('keydown', (event) => {
         let endTime = new Date().getTime();
         let keyName = event.key;
-            
+
         if(keyName === 'Shift' || keyName === 'Control') {
             if(endTime - startTime < allowedTime) {
-                count ++;
-                console.log('count' + count);
-                clearKeyboardContainer();
-                if(count%2 == 0) {
-                    keyboardLanguage = 'eng';
-                } else {
-                    keyboardLanguage = 'ru';
-                }
-                keyboard.renderKeys(keyboardLanguage, false);   
+                clearKeyboardContainer(); 
+                let keyboard = new Keyboard('keyboard');
+                keyboard.renderKeys(isLanguageEng, isCapsLockOn); 
             }
         } 
     });
 }
+
 
 function clearKeyboardContainer() {
     document.querySelector('.keyboard__keys').innerHTML = '';

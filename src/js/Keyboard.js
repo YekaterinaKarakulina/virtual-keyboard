@@ -35,7 +35,7 @@ export class Keyboard {
     renderKeys(keyboardLanguage, isUppercase) {
         console.log('lang' + keyboardLanguage);
         let keys_container = document.querySelector('.keyboard__keys');
-        if(keyboardLanguage === 'eng') {
+        if(keyboardLanguage) {
             this.generateKeys(keyboard_eng, keyboard_eng, isUppercase).forEach(key => {
                 keys_container.append(key.generateKey());
                 if(key.keyName === 'Backspace' || key.keyName === 'Delete' || key.keyName === 'Enter' || key.keyName === 'ArrowUp') {
@@ -43,17 +43,14 @@ export class Keyboard {
                 }
             });
         }
-
-        if(keyboardLanguage === 'ru') {
+        else  {
             this.generateKeys(keyboard_eng ,keyboard_ru, isUppercase).forEach(key => {
                 keys_container.append(key.generateKey());
                 if(key.keyName === 'Backspace' || key.keyName === 'Delete' || key.keyName === 'Enter' || key.keyName === 'ArrowUp') {
                     keys_container.append(document.createElement('br'));
                 }
             });
-        }
-        
-        
+        }  
     }
 
     //generate keys

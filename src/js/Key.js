@@ -4,7 +4,6 @@ export class Key {
         this.keyName = keyName;
         this.keyClass = keyClass;
         this.isUpperCase = isUpperCase;
-
     }
     
     //generate key
