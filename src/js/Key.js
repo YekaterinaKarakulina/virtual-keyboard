@@ -10,9 +10,7 @@ export class Key {
     generateKey() {
         let key = document.createElement('button');
         key.classList.add('keyboard__key');
-        key.classList.add(this.keyClass);
         let keyName = '';
-
 
         if(this.keyName === 'ShiftLeft' || this.keyName === 'ShiftRight') {
             keyName = 'Shift';
@@ -36,10 +34,8 @@ export class Key {
 
         if(this.keyName.length < 2) {
             if(this.isUpperCase === true) {
-                console.log('upper');
                 key.innerHTML = keyName.toUpperCase();
             } else {
-                console.log('lower');
                 key.innerHTML = keyName.toLowerCase();
             }
         } else {
@@ -55,26 +51,23 @@ export class Key {
             key.classList.add('keyboard__key_activatable');
             key.classList.add('keyboard__key_wide');
         }
+        key.classList.add(this.keyClass);
         return key;
     }
 
-    
-    
-    pressedKeyHandler(keyName, keyCode) {
+    pressedKeyHandler(keyCode) {
         document.querySelectorAll('.keyboard__key').forEach(element => {   
-            if(element.classList.contains(keyName) || element.classList.contains(keyCode)) {
+            if(element.classList.contains(keyCode)) {
                 element.classList.add('pressed');
             }
         });
     }
 
-    unpressedKeyHandler(keyName, keyCode) {
+    unpressedKeyHandler(keyCode) {
         document.querySelectorAll('.keyboard__key').forEach(element => {        
-            if(element.classList.contains(keyName) || element.classList.contains(keyCode)) {
+            if(element.classList.contains(keyCode)) {
                 element.classList.remove('pressed');
             }
         });
     }
-
-
 }

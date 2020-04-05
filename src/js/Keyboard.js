@@ -1,5 +1,13 @@
 import {Key} from "./Key";
 
+const keyboard_keyCodes = [
+    ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace'],
+    ['Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Delete'],
+    ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter'],
+    ['ShiftLeft','Backslash', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ShiftRight', 'ArrowUp'],
+    ['ControlLeft', 'AltLeft', 'Space', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight']
+];
+
 const keyboard_eng = [
     ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'],
     ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'Delete'],
@@ -36,7 +44,7 @@ export class Keyboard {
         console.log('lang' + keyboardLanguage);
         let keys_container = document.querySelector('.keyboard__keys');
         if(keyboardLanguage) {
-            this.generateKeys(keyboard_eng, keyboard_eng, isUppercase).forEach(key => {
+            this.generateKeys(keyboard_keyCodes, keyboard_eng, isUppercase).forEach(key => {
                 keys_container.append(key.generateKey());
                 if(key.keyName === 'Backspace' || key.keyName === 'Delete' || key.keyName === 'Enter' || key.keyName === 'ArrowUp') {
                     keys_container.append(document.createElement('br'));
@@ -44,7 +52,7 @@ export class Keyboard {
             });
         }
         else  {
-            this.generateKeys(keyboard_eng ,keyboard_ru, isUppercase).forEach(key => {
+            this.generateKeys(keyboard_keyCodes ,keyboard_ru, isUppercase).forEach(key => {
                 keys_container.append(key.generateKey());
                 if(key.keyName === 'Backspace' || key.keyName === 'Delete' || key.keyName === 'Enter' || key.keyName === 'ArrowUp') {
                     keys_container.append(document.createElement('br'));
