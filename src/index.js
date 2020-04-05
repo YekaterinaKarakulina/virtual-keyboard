@@ -7,7 +7,7 @@ const keyboard_eng = [
     ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'Delete'],
     ['CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'Enter'],
     ['ShiftLeft','\\', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'ShiftRight', 'ArrowUp'],
-    ['ControlLeft', 'Win', 'AltLeft', 'Space', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight']
+    ['ControlLeft', 'AltLeft', 'Space', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight']
 ];
 
 window.onload = function() {
@@ -53,14 +53,15 @@ function keyboardHandler(keyboard){
      
         } else {
             switch (keyName) {
-            case 'Backspace': //TODO
-                key_content = '';
+            case 'Backspace': 
+                key_content = textarea_content.substring(0, textarea_content.length-1);
+                textarea_content = '';
                 break;
             case 'Tab': 
                 key_content = '    ';
                 break;
             case 'Delete': 
-                key_content = ''; //TODO
+                key_content = ''; 
                 break;
             case 'CapsLock':
                 isCapsLockOn = !isCapsLockOn;

@@ -19,6 +19,8 @@ export class Key {
             keyName = 'Ctrl';
         } else if(this.keyName === 'AltLeft' || this.keyName === 'AltRight') {
             keyName = 'Alt';
+        } else if(this.keyName === 'Space') {
+            keyName = '';
         } else if(this.keyName === 'ArrowLeft') {
             keyName = '◄';
         } else if(this.keyName === 'ArrowRight') {
