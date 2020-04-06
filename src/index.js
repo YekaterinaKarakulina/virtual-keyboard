@@ -15,6 +15,12 @@ window.onload = function () {
   const keyboard = new Keyboard('keyboard');
   keyboard.generateKeyboardContainer();
 
+  //add languages switch buttons
+  // const text = document.createElement('div');
+  // text.classList.add('languages-switch-description');
+  // text.innerHTML = 'ShiftLeft + ControlLeft';
+  // document.querySelector('.keyboard__keys').appendChild(text);
+
   // create and render keys
   var data = sessionStorage.getItem('isLanguageEng'); //if data == true - eng, else ru
   //console.log('before render ' + sessionStorage.getItem('isLanguageEng'));

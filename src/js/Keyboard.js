@@ -41,6 +41,7 @@ export class Keyboard {
 
     //render keys
     renderKeys(isLanguageEng, isUppercase) {
+        addLanguageSwitchDescriptionElement();
         let keys_container = document.querySelector('.keyboard__keys');
         if(isLanguageEng == 'true') {
             console.log('eng');
@@ -71,4 +72,11 @@ export class Keyboard {
         }
         return keys;
     }  
+}
+
+const addLanguageSwitchDescriptionElement = () =>{
+    const text = document.createElement('div');
+    text.classList.add('languages-switch-description');
+    text.innerHTML = 'ShiftLeft + ControlLeft';
+    document.querySelector('.keyboard__keys').appendChild(text);
 }
