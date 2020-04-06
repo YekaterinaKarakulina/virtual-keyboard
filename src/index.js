@@ -65,10 +65,12 @@ function mouseHandler(keyboard) {
 }
 
 function printToTextarea(keyboard, keyCode, keyName) {
-  if (keyName === 'Meta') {
+  /*if (keyName === 'Meta') {
     keyContent = '';
     checkLanguageSwitch();
-  } else if (keyCode === 'Backspace') {
+  } */
+
+if (keyCode === 'Backspace') {
     keyContent = textareaContent.substring(0, textareaContent.length - 1);
     textareaContent = '';
   } else if (keyCode === 'Tab') {
@@ -83,9 +85,25 @@ function printToTextarea(keyboard, keyCode, keyName) {
     keyContent = '\n';
   } else if (keyCode === 'Space') {
     keyContent = ' ';
-  } else if (keyCode === 'ShiftLeft' || keyCode === 'ShiftRight') {
+  } 
+  else if(keyCode === 'ShiftLeft'  || keyCode === 'ControlLeft') {
+    let firstKeyPressedTime = new Date();
     keyContent = '';
-  } else if (keyCode === 'ControlLeft' || keyCode === 'ControlRight') {
+    document.addEventListener('keydown', (event) => {
+      let secondKeyPressedTime = new Date();
+      if(event.code === 'ControlLeft' || event.code === 'ShiftLeft') {
+        if(secondKeyPressedTime - firstKeyPressedTime < 200){
+          switchLanguage();
+          console.log('<<<<<>>>>>');
+        }
+      }
+    });
+  }
+
+ 
+  else if (keyCode === 'ShiftRight') {
+    keyContent = '';
+  } else if (keyCode === 'ControlRight') {
     keyContent = '';
   } else if (keyCode === 'AltLeft' || keyCode === 'AltRight') {
     keyContent = '';
@@ -119,7 +137,7 @@ function activateCapsLock(keyboard) {
   }
 }
 
-function checkLanguageSwitch() {
+/*function checkLanguageSwitch() {
   isLanguageEng = !isLanguageEng;
   sessionStorage.setItem('isLanguageEng', isLanguageEng);
   clearKeyboardContainer();
@@ -127,7 +145,19 @@ function checkLanguageSwitch() {
   keyboard.renderKeys(sessionStorage.getItem('isLanguageEng'), isCapsLockOn);
   document.querySelector('.AltLeft').classList.add('pressed');
   document.querySelector('.ShiftLeft').classList.add('pressed');
+}*/
+
+
+
+function switchLanguage() {
+  console.log('yes switchLanguage');
+  isLanguageEng = !isLanguageEng;
+  sessionStorage.setItem('isLanguageEng', isLanguageEng);
+  clearKeyboardContainer();
+  const keyboard = new Keyboard('keyboard');
+  keyboard.renderKeys(sessionStorage.getItem('isLanguageEng'), isCapsLockOn);
 }
+
 
 function clearKeyboardContainer() {
   document.querySelector('.keyboard__keys').innerHTML = '';

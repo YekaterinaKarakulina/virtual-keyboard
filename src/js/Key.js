@@ -31,7 +31,6 @@ export default class Key {
     } else {
       keyName = this.keyName;
     }
-    console.log('1111111' + keyName);
     if (this.keyName.length < 2) {
       if (this.isUpperCase === true) {
         key.innerHTML = keyName.toUpperCase();
