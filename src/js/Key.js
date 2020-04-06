@@ -51,20 +51,4 @@ export class Key {
     key.classList.add(this.keyClass);
     return key;
   }
-
-  pressedKeyHandler(keyCode) {
-    document.querySelectorAll('.keyboard__key').forEach((element) => {
-      if (element.classList.contains(keyCode)) {
-        element.classList.add('pressed');
-      }
-    });
-  }
-
-  unpressedKeyHandler(keyCode) {
-    document.querySelectorAll('.keyboard__key').forEach((element) => {
-      if (element.classList.contains(keyCode)) {
-        element.classList.remove('pressed');
-      }
-    });
-  }
 }

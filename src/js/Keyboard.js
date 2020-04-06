@@ -31,7 +31,6 @@ export class Keyboard {
   // generate container for keyboard
   generateKeyboardContainer() {
     const keyboardContainer = document.createElement('div');
-    // keyboardContainer.classList.add('keyboard');
     keyboardContainer.classList.add(this.name);
     const keys = document.createElement('div');
     keys.classList.add('keyboard__keys');
@@ -62,7 +61,7 @@ export class Keyboard {
     }
   }
 
-  // // generate keys
+  // generate keys
   generateKeys(keysClassArray, keysTitleArray, isUppercase) {
     const keys = [];
     for (let i = 0; i < keysTitleArray.length; i += 1) {

@@ -1,12 +1,9 @@
-import { Keyboard } from './js/Keyboard';
 import { Textarea } from './js/Textarea';
-import { Key } from './js/Key';
+import { Keyboard } from './js/Keyboard';
 
 sessionStorage.setItem('isLanguageEng', sessionStorage.getItem('isLanguageEng'));
 
 window.onload = function () {
-  console.log('hello');
-
   // create textarea
   const element = new Textarea('keyboard-textarea');
   element.generateTextarea();
@@ -28,28 +25,23 @@ window.onload = function () {
 
 let isCapsLockOn = false;
 let isLanguageEng = sessionStorage.getItem('isLanguageEng');
-let keyCode = '';
 let textareaContent = '';
 let keyContent = '';
 
 function keyboardHandler(keyboard) {
   document.addEventListener('keydown', (event) => {
-    const keyName = event.key;
-    keyCode = event.code;
     console.log(event);
-    const key = new Key(event.key);
-    key.pressedKeyHandler(keyCode);
-    printToTextarea(keyboard, keyCode, keyName);
+    pressedKeyHandler(event.code);
+    printToTextarea(keyboard, event.code, event.key);
     event.preventDefault();
   });
   document.addEventListener('keyup', (event) => {
-    keyCode = event.code;
-    const key = new Key(event.key);
-    key.unpressedKeyHandler(keyCode);
+    unpressedKeyHandler(event.code);
   });
 }
 
 function mouseHandler(keyboard) {
+  let keyCode = '';
   document.addEventListener('mousedown', (event) => {
     const keyName = event.target.innerHTML;
     if (event.target.classList[event.target.classList.length - 1] === 'active') {
@@ -57,8 +49,7 @@ function mouseHandler(keyboard) {
     } else {
       keyCode = event.target.classList[event.target.classList.length - 1];
     }
-    const key = new Key(event.key);
-    key.pressedKeyHandler(keyCode);
+    pressedKeyHandler(keyCode);
     printToTextarea(keyboard, keyCode, keyName);
     event.preventDefault();
   });
@@ -69,8 +60,7 @@ function mouseHandler(keyboard) {
     } else {
       keyCode = event.target.classList[event.target.classList.length - 1];
     }
-    const key = new Key(event.key);
-    key.unpressedKeyHandler(keyCode);
+    unpressedKeyHandler(keyCode);
   });
 }
 
@@ -119,9 +109,9 @@ function printToTextarea(keyboard, keyCode, keyName) {
   document.querySelector('.keyboard-textarea').innerHTML = textareaContent;
 }
 
-function activateCapsLock(keyboard, isLanguageEng) {
+function activateCapsLock(keyboard) {
   clearKeyboardContainer();
-  keyboard.renderKeys(isLanguageEng, isCapsLockOn); // ---todo toggle
+  keyboard.renderKeys(sessionStorage.getItem('isLanguageEng'), isCapsLockOn);
   if (isCapsLockOn === true) {
     document.querySelector('.keyboard__key_activatable').classList.add('active');
   } else {
@@ -141,4 +131,20 @@ function checkLanguageSwitch() {
 
 function clearKeyboardContainer() {
   document.querySelector('.keyboard__keys').innerHTML = '';
+}
+
+function pressedKeyHandler(keyCode) {
+  document.querySelectorAll('.keyboard__key').forEach((element) => {
+    if (element.classList.contains(keyCode)) {
+      element.classList.add('pressed');
+    }
+  });
+}
+
+function unpressedKeyHandler(keyCode) {
+  document.querySelectorAll('.keyboard__key').forEach((element) => {
+    if (element.classList.contains(keyCode)) {
+      element.classList.remove('pressed');
+    }
+  });
 }
