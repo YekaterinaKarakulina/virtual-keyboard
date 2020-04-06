@@ -10,7 +10,6 @@ export class Key {
     const key = document.createElement('button');
     key.classList.add('keyboard__key');
     let keyName = '';
-
     if (this.keyName === 'ShiftLeft' || this.keyName === 'ShiftRight') {
       keyName = 'Shift';
     } else if (this.keyName === 'ControlLeft' || this.keyName === 'ControlRight') {
@@ -30,7 +29,6 @@ export class Key {
     } else {
       keyName = this.keyName;
     }
-
     if (this.keyName.length < 2) {
       if (this.isUpperCase === true) {
         key.innerHTML = keyName.toUpperCase();
