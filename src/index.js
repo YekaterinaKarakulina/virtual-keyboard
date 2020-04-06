@@ -86,15 +86,29 @@ if (keyCode === 'Backspace') {
   } else if (keyCode === 'Space') {
     keyContent = ' ';
   } 
-  else if(keyCode === 'ShiftLeft'  || keyCode === 'ControlLeft') {
+  else if(keyCode === 'ShiftLeft') {
     let firstKeyPressedTime = new Date();
     keyContent = '';
     document.addEventListener('keydown', (event) => {
       let secondKeyPressedTime = new Date();
-      if(event.code === 'ControlLeft' || event.code === 'ShiftLeft') {
+      if(event.code === 'ControlLeft') {
         if(secondKeyPressedTime - firstKeyPressedTime < 200){
           switchLanguage();
-          console.log('<<<<<>>>>>');
+          console.log('<<<<<!!Shift+ctrl!!!>>>>>');
+        }
+      }
+    });
+  }
+
+  else if(keyCode === 'ControlLeft') {
+    let firstKeyPressedTime = new Date();
+    keyContent = '';
+    document.addEventListener('keydown', (event) => {
+      let secondKeyPressedTime = new Date();
+      if(event.code === 'ShiftLeft') {
+        if(secondKeyPressedTime - firstKeyPressedTime < 200){
+          switchLanguage();
+          console.log('<<<<<!!!Ctrl+shift!!>>>>>');
         }
       }
     });
