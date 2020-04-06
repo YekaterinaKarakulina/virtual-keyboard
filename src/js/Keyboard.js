@@ -76,6 +76,6 @@ export default class Keyboard {
 const addLanguageSwitchDescriptionElement = () => {
   const text = document.createElement('div');
   text.classList.add('languages-switch-description');
-  text.innerHTML = 'ShiftLeft + ControlLeft';
+  text.innerHTML = 'ShiftLeft + ControlLeft (my OS Linux)';
   document.querySelector('.keyboard__keys').appendChild(text);
 };
