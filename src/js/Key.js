@@ -1,4 +1,4 @@
-export class Key {
+export default class Key {
   constructor(keyClass, keyName, isUpperCase) {
     this.keyName = keyName;
     this.keyClass = keyClass;

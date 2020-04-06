@@ -1,4 +1,4 @@
-export class Textarea {
+export default class Textarea {
   constructor(name) {
     this.name = name;
   }

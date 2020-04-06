@@ -1,5 +1,5 @@
-import { Textarea } from './js/Textarea';
-import { Keyboard } from './js/Keyboard';
+import Textarea from './js/Textarea';
+import Keyboard from './js/Keyboard';
 
 sessionStorage.setItem('isLanguageEng', sessionStorage.getItem('isLanguageEng'));
 

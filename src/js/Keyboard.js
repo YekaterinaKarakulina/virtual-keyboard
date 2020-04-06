@@ -1,4 +1,4 @@
-import { Key } from './Key';
+import Key from './Key';
 
 const keyboardKeyCodes = [
   ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace'],
@@ -23,7 +23,7 @@ const keyboardRu = [
   ['ShiftLeft', '\\', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '/', 'ShiftRight', 'ArrowUp'],
   ['ControlLeft', 'AltLeft', 'Space', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight'],
 ];
-export class Keyboard {
+export default class Keyboard {
   constructor(name) {
     this.name = name;
   }
