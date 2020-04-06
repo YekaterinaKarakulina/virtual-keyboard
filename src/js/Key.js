@@ -7,11 +7,10 @@ export default class Key {
 
   // generate key
   generateKey() {
-    
     const key = document.createElement('button');
     key.classList.add('keyboard__key');
     let keyName = '';
-    
+
     if (this.keyName === 'ShiftLeft' || this.keyName === 'ShiftRight') {
       keyName = 'Shift';
     } else if (this.keyName === 'ControlLeft' || this.keyName === 'ControlRight') {
@@ -44,8 +43,8 @@ export default class Key {
     if (this.keyName === 'Space') {
       key.classList.add('keyboard__key_extra-wide');
     }
-    if (this.keyName === 'Tab' || this.keyName === 'ControlLeft' || this.keyName === 'ControlRight' 
-    || this.keyName === 'ShiftLeft' || this.keyName === 'ShiftRight' || this.keyName === 'Enter' 
+    if (this.keyName === 'Tab' || this.keyName === 'ControlLeft' || this.keyName === 'ControlRight'
+    || this.keyName === 'ShiftLeft' || this.keyName === 'ShiftRight' || this.keyName === 'Enter'
     || this.keyName === 'AltLeft' || this.keyName === 'AltRight' || this.keyName === 'Backspace') {
       key.classList.add('keyboard__key_wide');
     }

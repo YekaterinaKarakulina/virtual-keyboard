@@ -65,12 +65,7 @@ function mouseHandler(keyboard) {
 }
 
 function printToTextarea(keyboard, keyCode, keyName) {
-  /*if (keyName === 'Meta') {
-    keyContent = '';
-    checkLanguageSwitch();
-  } */
-
-if (keyCode === 'Backspace') {
+  if (keyCode === 'Backspace') {
     keyContent = textareaContent.substring(0, textareaContent.length - 1);
     textareaContent = '';
   } else if (keyCode === 'Tab') {
@@ -85,37 +80,29 @@ if (keyCode === 'Backspace') {
     keyContent = '\n';
   } else if (keyCode === 'Space') {
     keyContent = ' ';
-  } 
-  else if(keyCode === 'ShiftLeft') {
-    let firstKeyPressedTime = new Date();
+  } else if (keyCode === 'ShiftLeft') {
+    const firstKeyPressedTime = new Date();
     keyContent = '';
     document.addEventListener('keydown', (event) => {
-      let secondKeyPressedTime = new Date();
-      if(event.code === 'ControlLeft') {
-        if(secondKeyPressedTime - firstKeyPressedTime < 200){
+      const secondKeyPressedTime = new Date();
+      if (event.code === 'ControlLeft') {
+        if (secondKeyPressedTime - firstKeyPressedTime < 200) {
           switchLanguage();
-          console.log('<<<<<!!Shift+ctrl!!!>>>>>');
         }
       }
     });
-  }
-
-  else if(keyCode === 'ControlLeft') {
-    let firstKeyPressedTime = new Date();
+  } else if (keyCode === 'ControlLeft') {
+    const firstKeyPressedTime = new Date();
     keyContent = '';
     document.addEventListener('keydown', (event) => {
-      let secondKeyPressedTime = new Date();
-      if(event.code === 'ShiftLeft') {
-        if(secondKeyPressedTime - firstKeyPressedTime < 200){
+      const secondKeyPressedTime = new Date();
+      if (event.code === 'ShiftLeft') {
+        if (secondKeyPressedTime - firstKeyPressedTime < 200) {
           switchLanguage();
-          console.log('<<<<<!!!Ctrl+shift!!>>>>>');
         }
       }
     });
-  }
-
- 
-  else if (keyCode === 'ShiftRight') {
+  } else if (keyCode === 'ShiftRight') {
     keyContent = '';
   } else if (keyCode === 'ControlRight') {
     keyContent = '';
@@ -151,27 +138,13 @@ function activateCapsLock(keyboard) {
   }
 }
 
-/*function checkLanguageSwitch() {
-  isLanguageEng = !isLanguageEng;
-  sessionStorage.setItem('isLanguageEng', isLanguageEng);
-  clearKeyboardContainer();
-  const keyboard = new Keyboard('keyboard');
-  keyboard.renderKeys(sessionStorage.getItem('isLanguageEng'), isCapsLockOn);
-  document.querySelector('.AltLeft').classList.add('pressed');
-  document.querySelector('.ShiftLeft').classList.add('pressed');
-}*/
-
-
-
 function switchLanguage() {
-  console.log('yes switchLanguage');
   isLanguageEng = !isLanguageEng;
   sessionStorage.setItem('isLanguageEng', isLanguageEng);
   clearKeyboardContainer();
   const keyboard = new Keyboard('keyboard');
   keyboard.renderKeys(sessionStorage.getItem('isLanguageEng'), isCapsLockOn);
 }
-
 
 function clearKeyboardContainer() {
   document.querySelector('.keyboard__keys').innerHTML = '';

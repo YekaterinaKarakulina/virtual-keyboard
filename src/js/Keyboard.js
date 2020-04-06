@@ -43,7 +43,6 @@ export default class Keyboard {
     addLanguageSwitchDescriptionElement();
     const keysContainer = document.querySelector('.keyboard__keys');
     if (isLanguageEng === 'true') {
-      console.log('eng');
       this.generateKeys(keyboardKeyCodes, keyboardEng, isUppercase).forEach((key) => {
         keysContainer.append(key.generateKey());
         if (key.keyName === 'Backspace' || key.keyName === 'Delete' || key.keyName === 'Enter' || key.keyName === 'ArrowUp') {
@@ -51,7 +50,6 @@ export default class Keyboard {
         }
       });
     } else {
-      console.log('ru');
       this.generateKeys(keyboardKeyCodes, keyboardRu, isUppercase).forEach((key) => {
         keysContainer.append(key.generateKey());
         if (key.keyName === 'Backspace' || key.keyName === 'Delete' || key.keyName === 'Enter' || key.keyName === 'ArrowUp') {
