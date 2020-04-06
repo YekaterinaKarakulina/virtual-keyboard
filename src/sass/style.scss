@@ -51,17 +51,19 @@
             background: red;
             border-radius: 50%;
     }
-            &.active::after {
-                content: '';
-                top: 5px;
-                right: 5px;
-                position: absolute;
-                width: 8px;
-                height: 8px;
-                
-                border-radius: 50%;
-                background: #08ff00;
-            }
+    &.active::after {
+        content: '';
+        top: 5px;
+        right: 5px;
+        position: absolute;
+        width: 8px;
+        height: 8px;        
+        border-radius: 50%;
+        background: #08ff00;
+    }
+    &:hover {
+        cursor: pointer;
+    }
     
 }
 
