@@ -40,18 +40,18 @@ export class Keyboard {
     }
 
     //render keys
-    renderKeys(keyboardLanguage, isUppercase) {
-        console.log('lang' + keyboardLanguage);
+    renderKeys(isLanguageEng, isUppercase) {
         let keys_container = document.querySelector('.keyboard__keys');
-        if(keyboardLanguage) {
+        if(isLanguageEng == 'true') {
+            console.log('eng');
             this.generateKeys(keyboard_keyCodes, keyboard_eng, isUppercase).forEach(key => {
                 keys_container.append(key.generateKey());
                 if(key.keyName === 'Backspace' || key.keyName === 'Delete' || key.keyName === 'Enter' || key.keyName === 'ArrowUp') {
                     keys_container.append(document.createElement('br'));
                 }
             });
-        }
-        else  {
+        } else  {
+            console.log('ru');
             this.generateKeys(keyboard_keyCodes ,keyboard_ru, isUppercase).forEach(key => {
                 keys_container.append(key.generateKey());
                 if(key.keyName === 'Backspace' || key.keyName === 'Delete' || key.keyName === 'Enter' || key.keyName === 'ArrowUp') {
