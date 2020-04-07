@@ -64,7 +64,8 @@ function mouseHandler(keyboard) {
   });
 }
 
-function printToTextarea(keyboard, keyCode, keyName) {
+function printToTextarea(keyboard, keyCode) {
+  keyContent = '';
   if (keyCode === 'Backspace') {
     keyContent = textareaContent.substring(0, textareaContent.length - 1);
     textareaContent = '';
