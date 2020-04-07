@@ -32,7 +32,7 @@ function keyboardHandler(keyboard) {
   document.addEventListener('keydown', (event) => {
     console.log(event);
     pressedKeyHandler(event.code);
-    printToTextarea(keyboard, event.code, event.key);
+    printToTextarea(keyboard, event, event.code, event.key);//
     event.preventDefault();
   });
   document.addEventListener('keyup', (event) => {
@@ -64,7 +64,7 @@ function mouseHandler(keyboard) {
   });
 }
 
-function printToTextarea(keyboard, keyCode) {
+function printToTextarea(keyboard, event, keyCode) {
   keyContent = '';
   if (keyCode === 'Backspace') {
     keyContent = textareaContent.substring(0, textareaContent.length - 1);
@@ -82,27 +82,23 @@ function printToTextarea(keyboard, keyCode) {
   } else if (keyCode === 'Space') {
     keyContent = ' ';
   } else if (keyCode === 'ShiftLeft') {
-    const firstKeyPressedTime = new Date();
     keyContent = '';
-    document.addEventListener('keydown', (event) => {
-      const secondKeyPressedTime = new Date();
-      if (event.code === 'ControlLeft') {
-        if (secondKeyPressedTime - firstKeyPressedTime < 200) {
-          switchLanguage();
-        }
-      }
-    });
+    if (event.ctrlKey && event.shiftKey && event.altKey) { 
+      pressedKeyHandler('ShiftLeft');
+      pressedKeyHandler('ControlLeft');
+      pressedKeyHandler('AltLeft');
+    } else if (event.ctrlKey && event.shiftKey) {
+      switchLanguage(event);
+    }  
   } else if (keyCode === 'ControlLeft') {
-    const firstKeyPressedTime = new Date();
     keyContent = '';
-    document.addEventListener('keydown', (event) => {
-      const secondKeyPressedTime = new Date();
-      if (event.code === 'ShiftLeft') {
-        if (secondKeyPressedTime - firstKeyPressedTime < 200) {
-          switchLanguage();
-        }
-      }
-    });
+    if (event.ctrlKey && event.shiftKey && event.altKey) { 
+      pressedKeyHandler('ShiftLeft');
+      pressedKeyHandler('ControlLeft');
+      pressedKeyHandler('AltLeft');
+    } else if (event.ctrlKey && event.shiftKey) {
+      switchLanguage();
+    }
   } else if (keyCode === 'ShiftRight') {
     keyContent = '';
   } else if (keyCode === 'ControlRight') {
@@ -145,6 +141,8 @@ function switchLanguage() {
   clearKeyboardContainer();
   const keyboard = new Keyboard('keyboard');
   keyboard.renderKeys(sessionStorage.getItem('isLanguageEng'), isCapsLockOn);
+  pressedKeyHandler('ShiftLeft');
+  pressedKeyHandler('ControlLeft');
 }
 
 function clearKeyboardContainer() {
