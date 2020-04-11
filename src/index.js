@@ -32,7 +32,7 @@ function keyboardHandler(keyboard) {
   document.addEventListener('keydown', (event) => {
     console.log(event);
     pressedKeyHandler(event.code);
-    printToTextarea(keyboard, event, event.code, event.key);//
+    printToTextarea(keyboard, event, event.code, event.key);
     event.preventDefault();
   });
   document.addEventListener('keyup', (event) => {
@@ -50,7 +50,7 @@ function mouseHandler(keyboard) {
       keyCode = event.target.classList[event.target.classList.length - 1];
     }
     pressedKeyHandler(keyCode);
-    printToTextarea(keyboard, keyCode, keyName);
+    printToTextarea(keyboard, event, keyCode);
     event.preventDefault();
   });
 
